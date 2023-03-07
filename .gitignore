@@ -4,3 +4,4 @@ CLIENT/.DS_Store
 SERVER/build/
 SERVER/CMakeLists.txt
 SERVER/.DS_Store
+.DS_Store
