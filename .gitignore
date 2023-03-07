@@ -1,7 +1,10 @@
 CLIENT/build/
 CLIENT/CMakeLists.txt
 CLIENT/.DS_Store
+CLIENT/.vscode
 SERVER/build/
 SERVER/CMakeLists.txt
 SERVER/.DS_Store
+SERVER/.vscode
 .DS_Store
+.vscode
