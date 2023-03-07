@@ -1,0 +1,6 @@
+CLIENT/build/
+CLIENT/CMakeLists.txt
+CLIENT/.DS_Store
+SERVER/build/
+SERVER/CMakeLists.txt
+SERVER/.DS_Store
