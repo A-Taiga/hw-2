@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 {
 	std::string line = {};
 	std::string word = {};
-	auto        i    = 0;
+	size_t      i    = 0;
 	Info        info = {};
 
 	if (argc < 3)
@@ -135,7 +135,7 @@ Info get_sizes(const std::string& port, const std::string& address)
 
 	server_address.sin_port   = htons(std::stoi(port));
 	server_address.sin_family = AF_INET;
-	
+
 	std::memcpy(server->h_addr, &server_address.sin_addr.s_addr, server->h_length);
 
 	socket_fd = socket(AF_INET, SOCK_STREAM, 0);
