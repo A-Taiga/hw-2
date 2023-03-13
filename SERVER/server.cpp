@@ -20,39 +20,9 @@ struct Info
 	size_t word_size;
 };
 
-void fireman(int) { waitpid(-1, nullptr, WNOHANG); }
-
-void error(std::string&& msg)
-{
-	std::cerr << "ERROR: " << msg << std::endl;
-	std::exit(EXIT_FAILURE);
-}
-
-size_t read_file(huffman::priority& pq)
-{
-	size_t      thead_size = 0;
-	std::string line       = {};
-	while (std::getline(std::cin, line))
-	{
-		thead_size++;
-		auto freq   = 0;
-		char symbol = '\0';
-
-		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
-		line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
-
-		std::istringstream ss{line};
-
-		if (line[0] == ' ') // for space character
-			symbol = ' ';
-		else
-			ss >> symbol;
-
-		ss >> freq;
-		huffman::insert(pq, symbol, freq);
-	}
-	return thead_size;
-}
+void   fireman(int);
+void   error(std::string&& msg);
+size_t read_file(huffman::priority& pq);
 
 int main(int argc, char* argv[])
 {
@@ -136,4 +106,37 @@ int main(int argc, char* argv[])
 	close(socket_fd);
 	huffman::deleteNodes(pq.top());
 	return 0;
+}
+void fireman(int) { waitpid(-1, nullptr, WNOHANG); }
+
+void error(std::string&& msg)
+{
+	std::cerr << std::strerror(errno) << " " << msg << std::endl;
+	std::exit(EXIT_FAILURE);
+}
+
+size_t read_file(huffman::priority& pq)
+{
+	size_t      thead_size = 0;
+	std::string line       = {};
+	while (std::getline(std::cin, line))
+	{
+		thead_size++;
+		auto freq   = 0;
+		char symbol = '\0';
+
+		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
+		line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
+
+		std::istringstream ss{line};
+
+		if (line[0] == ' ') // for space character
+			symbol = ' ';
+		else
+			ss >> symbol;
+
+		ss >> freq;
+		huffman::insert(pq, symbol, freq);
+	}
+	return thead_size;
 }
