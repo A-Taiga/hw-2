@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
 	port_number = std::stoi(argv[1]);
 
-	static huffman::priority pq = {}; //////////////////why does this only work when it's static
+	huffman::priority pq = {};
 	thread_size                 = read_file(pq);
 
 	word_size = huffman::merge_tree(pq);
@@ -58,7 +58,8 @@ int main(int argc, char* argv[])
 	server_addres.sin_port        = htons(port_number);
 
 	auto option = 1;
-	n           = setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
+
+	n = setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
 	if (n != 0)
 		error("SOCKET OPTION");
 
